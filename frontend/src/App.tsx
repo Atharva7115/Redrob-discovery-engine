@@ -60,6 +60,8 @@ Things we'd like you to have:
 
 Notice period: Prefer sub-30-day notice. We can buy out up to 30 days.`;
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 export default function App() {
   const [jdText, setJdText] = useState(DEFAULT_JD);
   const [useLlm, setUseLlm] = useState(false); // Default false for offline compliance
@@ -73,7 +75,7 @@ export default function App() {
 
   // Check API health on load
   useEffect(() => {
-    fetch('http://localhost:8000/api/health')
+    fetch(`${API_BASE_URL}/api/health`)
       .then(res => res.json())
       .then(data => setApiHealth(data))
       .catch(err => console.log("Backend not running yet:", err));
@@ -83,7 +85,7 @@ export default function App() {
   useEffect(() => {
     if (selectedCandidateId) {
       setCandidateDetails(null);
-      fetch(`http://localhost:8000/api/candidates/${selectedCandidateId}`)
+      fetch(`${API_BASE_URL}/api/candidates/${selectedCandidateId}`)
         .then(res => {
           if (!res.ok) throw new Error("Candidate not found");
           return res.json();
@@ -109,7 +111,7 @@ export default function App() {
     setFunnelStage('reranking');
     
     try {
-      const response = await fetch('http://localhost:8000/api/rank', {
+      const response = await fetch(`${API_BASE_URL}/api/rank`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
