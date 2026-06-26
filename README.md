@@ -3,6 +3,8 @@
 
 An advanced, recruiter-facing **semantic candidate ranking engine** built to match and rank a pool of 100,000 candidates against a specific "Senior AI Engineer — Founding Team" Job Description (JD). 
 
+👉 **Live Recruiter Dashboard:** [https://redrob-discovery-engine-xnsq.vercel.app/](https://redrob-discovery-engine-xnsq.vercel.app/)
+
 The engine implements a **3-stage funnel architecture** designed to be fast, accurate, and fully explainable, prioritizing true career trajectory and behavioral engagement over literal keyword stuffing.
 
 ---
@@ -95,7 +97,7 @@ Our pipeline was evaluated against a highly tuned weak-supervision target (repre
 
 > [!NOTE]
 > **Vercel Deployment & Dynamic Local API Routing:**
-> The React frontend is deployed to Vercel and is configured to query `http://localhost:8000` by default. When you run the FastAPI backend locally on port 8000, your live Vercel frontend will automatically connect to it and display live candidates. If you deploy the backend to a cloud host (like Render), you can set the `VITE_API_BASE_URL` environment variable in Vercel to point to your live backend!
+> The React frontend is deployed to Vercel at [https://redrob-discovery-engine-xnsq.vercel.app/](https://redrob-discovery-engine-xnsq.vercel.app/) and is configured to query `http://localhost:8000` by default. When you run the FastAPI backend locally on port 8000, your live Vercel frontend will automatically connect to it and display live candidates. If you deploy the backend to a cloud host (like Render), you can set the `VITE_API_BASE_URL` environment variable in Vercel to point to your live backend!
 
 ### Running the Offline Submission (Under 15 Seconds)
 Organizers can run the end-to-end ranking script completely offline (no network) on the full 100,000 candidate dataset. The script automatically executes Stage 0, retrieves via BM25, embeds on-the-fly, scores with the LTR model, and re-ranks with our cached/local justification engine in **under 15 seconds on a standard CPU**:
@@ -129,6 +131,9 @@ pytest
 ---
 
 ## 5. Running the Recruiter Dashboard
+
+### Live Application
+👉 **[https://redrob-discovery-engine-xnsq.vercel.app/](https://redrob-discovery-engine-xnsq.vercel.app/)**
 
 Our minimal, premium recruiter dashboard allows you to paste JDs, run the ranking funnel, inspect candidate feature breakdowns in an interactive drawer, and download XLSX reports. It is styled with **official Redrob branding**, featuring a sticky control panel and a 2-column candidates grid.
 
