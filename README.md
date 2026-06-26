@@ -153,6 +153,12 @@ The server runs at `http://localhost:8000`. Thanks to the `HF_HUB_OFFLINE=1` fla
 
 ```
 candidate-ranking-engine/
+├── frontend/                      # React Recruiter Dashboard Web App (Vite + TS)
+│   ├── src/
+│   │   ├── App.tsx                # Redrob-branded dashboard (sticky controls, 2-column candidate grid)
+│   │   └── index.css              # Custom design system and styling
+│   ├── package.json               # Node package manager configuration and scripts
+│   └── vite.config.ts             # Vite bundler and environment configuration
 ├── src/
 │   ├── config.py                  # All thresholds, weights, and paths
 │   ├── ingestion/
