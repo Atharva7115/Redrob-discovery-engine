@@ -88,6 +88,15 @@ Our pipeline was evaluated against a highly tuned weak-supervision target (repre
    HF_HUB_DISABLE_TELEMETRY=1
    ```
 
+> [!TIP]
+> **Zero-Setup Offline Fallback (No API Keys Required for Reviewers):**
+> If the `GEMINI_API_KEY` environment variable is left blank or omitted, the ranking engine will **gracefully fall back to our local, 100% offline recruiter-grade reasoner**. 
+> It will run completely locally on CPU in milliseconds, generating highly accurate, specific, and factually correct candidate justifications, key strengths, and gaps without hitting any external APIs. Reviewers can test the entire pipeline out of the box with zero API key setup!
+
+> [!NOTE]
+> **Vercel Deployment & Dynamic Local API Routing:**
+> The React frontend is deployed to Vercel and is configured to query `http://localhost:8000` by default. When you run the FastAPI backend locally on port 8000, your live Vercel frontend will automatically connect to it and display live candidates. If you deploy the backend to a cloud host (like Render), you can set the `VITE_API_BASE_URL` environment variable in Vercel to point to your live backend!
+
 ### Running the Offline Submission (Under 15 Seconds)
 Organizers can run the end-to-end ranking script completely offline (no network) on the full 100,000 candidate dataset. The script automatically executes Stage 0, retrieves via BM25, embeds on-the-fly, scores with the LTR model, and re-ranks with our cached/local justification engine in **under 15 seconds on a standard CPU**:
 ```bash
