@@ -1,0 +1,74 @@
+# Redrob Hackathon — Submission Metadata
+# Mirrors the portal metadata submitted at upload time.
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "antigravity-ai"
+
+primary_contact:
+  name: "Antigravity Lead"
+  email: "lead@antigravity.ai"
+  phone: "+91-9900990099"
+
+team_members:
+  - name: "Antigravity Lead"
+    email: "lead@antigravity.ai"
+    role: "Lead AI Engineer"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/antigravity/redrob-candidate-ranking"
+sandbox_link: "https://huggingface.co/spaces/antigravity/redrob-candidate-ranker"
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Windows PC"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.11.4"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: true
+  pre_computation_time_minutes: 25
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Claude"
+  - "Gemini"
+  - "Cursor"
+
+ai_usage_summary: |
+  Used Gemini for code scaffolding, pair programming, and architectural design. 
+  Used Claude for code reviews. All mathematical features and honeypot checkers 
+  are original implementations. No candidate data was uploaded to public models.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  An advanced 3-stage funnel candidate search pipeline. Stage 0 applies rule-based 
+  filters and a highly accurate Honeypot filter to eliminate trap profiles (contradictory 
+  job durations and zero-experience expert skills) to guarantee a 0% honeypot rate. 
+  Stage 1 generates multi-vector embeddings (skills, career trajectory, and project narratives) 
+  using a local SentenceTransformer model indexed in FAISS, combined with a LightGBM 
+  LambdaMART ranking model trained via weak-supervision. Stage 2 applies a parallelized 
+  LLM deep re-ranking step using GPT-4o-mini with local file caching and an offline, 
+  fact-based fallback reasoning engine that complies with the no-network constraint.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
